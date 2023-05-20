@@ -1,0 +1,27 @@
+﻿@page "/login"
+@using FirstMAUIblazor.Data;
+<EditForm Model="@loginModel" OnValidSubmit="@HandleSubmit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary />
+    <label>
+        UserName or email:
+        <InputText id="userName" @bind-Value="loginModel.UserName" />
+        <ValidationMessage  For="@(() => loginModel.Password)"/>
+    </label>
+    <label>
+    Password:
+    <InputText id="password"  type="password" @bind-Value="loginModel.Password" />
+        <ValidationMessage For="@(() => loginModel.Password)"/>
+
+    </label>
+    <button type="submit">Sign in</button>
+</EditForm>
+
+
+@code {
+    private LoginModel loginModel = new();
+    public void HandleSubmit()
+    {
+        Console.WriteLine(loginModel.UserName);
+    }
+}
